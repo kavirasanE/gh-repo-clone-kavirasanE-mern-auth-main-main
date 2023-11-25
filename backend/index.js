@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import userdata from './routes/user.routes.js'
 import signup from './routes/auth.routes.js'
+
 dotenv.config();
 
 const app = express();
