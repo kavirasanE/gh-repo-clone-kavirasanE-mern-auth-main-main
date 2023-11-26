@@ -4,11 +4,14 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import userdata from './routes/user.routes.js'
 import signup from './routes/auth.routes.js'
+import cors from 'cors'
 
 dotenv.config();
 
 const app = express();
 app.use(express.json());
+
+app.use(cors());
 
 app.listen (PORT , () => {
     console.log(`Server is listening at ${PORT}`);
