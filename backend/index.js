@@ -2,9 +2,10 @@ import express from 'express';
 import PORT from './config.js';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
-import userdata from './routes/user.routes.js'
-import signup from './routes/auth.routes.js'
+import userRoutes from './routes/user.routes.js'
+import authRoutes from './routes/auth.routes.js'
 import cors from 'cors'
+
 
 dotenv.config();
 
@@ -17,8 +18,8 @@ app.listen (PORT , () => {
     console.log(`Server is listening at ${PORT}`);
 });
 
-app.use('/api',userdata)
-app.use('/api',signup)
+app.use('/api',userRoutes)
+app.use('/api',authRoutes)
 
 app.use((err,req,res,next) => {
     const statusCode = err.statusCode || 500;
