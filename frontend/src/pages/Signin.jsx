@@ -1,38 +1,40 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import  {signInStart ,signInSuccess, signInFailure } from '../redux/user/userSlice.js'
+import {useDispatch, useSelector} from 'react-redux';
 
-const Signup = () => {
+const SignIn = () => {
   const [form, setForm] = useState({});
-  const [loading,setLoading] = useState(false);
-  const [error,setError] =useState(false);
+  const {loading , error} =useSelector((state) => state.user);
   const navigate = useNavigate();
-
+  const dispatch =useDispatch ();
   const handleChange = (e) => {
     setForm({ ...form, [e.target.id]: e.target.value });
   };
-
+  
   const handleSubmit = (e) => {
+    dispatch(signInStart());
     e.preventDefault();
     const data = {
       email: form.email,
       password: form.password,
     };
-    setLoading(true)
-    setError(false);
+   
     axios
       .post('http://localhost:3000/api/auth/signin', data)
+
       .then(() => {
          if(data.success === false){
-          setError(true);
-          setLoading(false);
-          return resizeBy.status(404).send("user not found")
+           return 
         }
+        dispatch(signInSuccess(data));        
         navigate('/');
+        dispatch(signInFailure());
+
       })
       .catch((error) => {
-        setLoading(false);
-        setError(true);
+        dispatch(signInFailure(error));
         console.log(error);
       });
   };
@@ -76,4 +78,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default SignIn;
