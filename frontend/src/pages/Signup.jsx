@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import oAuth from '../components/oAuth'
 
 const Signup = () => {
   const [form, setForm] = useState({});
@@ -74,6 +75,7 @@ const Signup = () => {
           >
            {loading ? "Vanakam..." : error ? "Thambi credentials enum varala " :'Signup'}
           </button>
+          <oAuth/>
         </form>
         <div className='flex max-w-lg mx-auto'>
           <p>Having an account?</p>
