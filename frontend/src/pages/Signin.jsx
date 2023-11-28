@@ -72,7 +72,7 @@ const SignIn = () => {
         <div className='flex max-w-lg mx-auto'>
           <p>Dont Having an account?</p>
           <Link to='/sign-up'>
-            <span className='text-blue-800'>Sign up</span>
+            <span className='text-blue-800'>Sign Up</span>
           </Link>
         </div>
       </div>

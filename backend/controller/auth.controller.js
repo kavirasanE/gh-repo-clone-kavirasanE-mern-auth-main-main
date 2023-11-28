@@ -26,7 +26,7 @@ export const signin = async (req,res,next) => {
     const { password:hashpassword, ...rest} =validUser._doc;
     const expiryDate =new Date(Date.now() + 99999999999999 );
     res
-    .cookie ('beare_token',token,{httpOnly:true, expires:expiryDate})
+    .cookie ('bearer_token',token,{httpOnly:true, expires:expiryDate})
     .status(200)
     .send(rest);
   }
@@ -34,5 +34,17 @@ export const signin = async (req,res,next) => {
     next(errorhandle(300,"enter your correct creditials"))
   }
 }
- 
- 
+
+ export const google = async (req,res,next) => {
+  try{
+      const user = await User.findOne({ email: req.body.email })
+      if(user){
+        const token =jwt.sign({id: user._id},process.env.JWT_SECRET)
+      }
+  }
+  catch(error){
+    next(error)
+
+  }
+
+ }
