@@ -1,38 +1,40 @@
-import React from 'react'
 import axios from 'axios'
-import {GoogleAuthProvider ,signInwithPopup ,getAuth } from 'firebase/auth'
+import {GoogleAuthProvider ,signInWithPopup ,getAuth } from 'firebase/auth'
+import  app from '../firebase';
 import { useDispatch } from 'react-redux'
-import { signInFailure, signInStart, signInSuccess } from '../redux/user/userSlice'
+import { signInSuccess } from '../redux/user/userSlice'
+import { useNavigate } from 'react-router-dom'
 
-const oAuth = () => {
+ function  OAuth  (){
     const dispatch = useDispatch();
+    const navigate =useNavigate();
+
     const handleGoogleClick = async ()=> {
         try{
           const provider =new GoogleAuthProvider();
           const auth =getAuth(app);
-          const result =await  signInwithPopup(auth,provider);
-          dispatch(signInStart());
 
-        const data = {
+          const result =await signInWithPopup(auth,provider);
+          const data = {
             name:result.user.displayName,
             email:result.user.email,
             photo:result.user.photoURL,
         };
-
           axios
-          .post('api/auth/google',data)
+          .post('/api/auth/google',data)
           dispatch(signInSuccess(data));
+          navigate('/profile');
         }
         catch(error){
       console.log(error);
-      dispatch(signInFailure());
-        }
+     
+      }
     }
   return (
-    <button  type ='buuton'  onClick = {handleGoogleClick} className='bg-red-700 text-white p-3 rounded-lg uppercase hover:opacity-95'>
-      continue with google
+    <button  type ='button'  onClick = {handleGoogleClick} className='bg-red-800 text-white p-3 rounded-lg uppercase hover:opacity-95'>
+      Continue with google
     </button>
   )
 }
 
-export default oAuth
+export default OAuth

@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import oAuth from '../components/oAuth'
+import OAuth from '../components/oAuth'
 
 const Signup = () => {
   const [form, setForm] = useState({});
   const [loading,setLoading] = useState(false);
   const [error,setError] =useState(false);
   const navigate = useNavigate();
+
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.id]: e.target.value });
@@ -75,8 +76,9 @@ const Signup = () => {
           >
            {loading ? "Vanakam..." : error ? "Thambi credentials enum varala " :'Signup'}
           </button>
-          <oAuth/>
-        </form>
+          <OAuth/>           
+            </form>
+            
         <div className='flex max-w-lg mx-auto'>
           <p>Having an account?</p>
           <Link to='/sign-in'>
@@ -88,4 +90,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Signup

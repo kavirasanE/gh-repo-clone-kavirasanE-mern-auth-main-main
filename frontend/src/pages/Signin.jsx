@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import  {signInStart ,signInSuccess, signInFailure } from '../redux/user/userSlice.js'
 import {useDispatch, useSelector} from 'react-redux';
-import oAuth from '../components/oAuth.jsx'
+
 
 const SignIn = () => {
   const [form, setForm] = useState({});
@@ -67,7 +67,6 @@ const SignIn = () => {
           >
            {loading ? "Vanakam..." : error ? "Thambi credentials enum varala " :'SignIn'}
           </button>
-          <oAuth/>
         </form>
         <div className='flex max-w-lg mx-auto'>
           <p>Dont Having an account?</p>
