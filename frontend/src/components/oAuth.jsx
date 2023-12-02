@@ -21,7 +21,7 @@ import { useNavigate } from 'react-router-dom'
             photo:result.user.photoURL,
         };
           axios
-          .post('/api/auth/google',data)
+          .post('http://localhost:3000/api/auth/google',data)
           dispatch(signInSuccess(data));
           navigate('/profile');
         }
