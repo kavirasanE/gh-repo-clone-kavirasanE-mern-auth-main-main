@@ -1,7 +1,5 @@
-import { jwt } from "jsonwebtoken";
-
-
-export const verifyToken = (req,res,next) => {
+import jwt  from "jsonwebtoken"
+const verifyToken = (req,res,next) => {
     const token =req.cookies.bearer_token;
     if (!token) {
         return res.status(401).json('Acces denied');
@@ -14,3 +12,4 @@ export const verifyToken = (req,res,next) => {
       next();
     });
 }
+export default verifyToken;

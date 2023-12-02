@@ -36,27 +36,18 @@ service firebase.storage {
         />
         <input
           defaultValue={currentUser.name}
-          type="text"
+          type="username"
           placeholder="username"
           id="username"
           className="bg-gray-300 p-3 max-w-auto my-5 rounded-lg "
         />
         <input
           defaultValue={currentUser.email}
-          type="email"
-          placeholder="username"
-          id="username"
+          
           className="bg-gray-300 p-3 max-w-auto  rounded-lg "
         />
-        <input
-          type="password"
-          id="paswword"
-          placeholder="Password"
-          className="bg-gray-300 p-3 my-4 max-w-auto  rounded-lg "
-        />
-        <button className="bg-slate-700 text-white p-3 rounded-lg upprcase font-bold hover:opacity-95 disabled:opacity-80 ">
-          Update
-        </button>
+        
+        
       </form>
       <div className="flex justify-between mt-3">
         <span className="text-red-800">Delete Account</span>
