@@ -1,17 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import Home from "../pages/Home"
 
 const Header = () => {
   const {currentUser}= useSelector(state => state.user)
   return (
+    
     <div className=" bg-gray-200 shadow-lg shadow-slate-500 h-10 p-2 flex flex-wrap justify-between align-center">
       <Link to="/Home">
         <h1 className="font-bold">Authenticate</h1>{" "}
       </Link>
       <ul className="flex gap-4 flex-wrap ">
-        <Link to="/profile">
-          <li>Profile</li>
+        <Link to="/Home">
+          <li>Home</li>
         </Link>
         <Link to="/about">
           <li>About</li>
@@ -28,7 +30,9 @@ const Header = () => {
           )}
         </Link>
       </ul>
+      
     </div>
+   
   );
 };
 

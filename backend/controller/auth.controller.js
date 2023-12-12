@@ -71,3 +71,6 @@ export const signin = async (req,res,next) => {
   }
 
  };
+ export const  signout =(req,res) => {
+   res.clearCookie('bearer_token').status(200).json("sigin out ");  
+ };

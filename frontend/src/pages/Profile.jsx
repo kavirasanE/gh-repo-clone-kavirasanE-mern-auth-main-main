@@ -2,11 +2,38 @@ import React from "react";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useRef } from "react";
 import { useState } from "react";
+import axios from 'axios';
+import {useNavigate,useParams} from 'react-router-dom'
+import  signOut  from "../redux/user/userSlice";
+import { useDispatch } from "react-redux";
 
 const Profile = () => {
   const fileRef = useRef(null);
   const [image,setImage] =useState (undefined);
   const { currentUser } = useSelector((state) => state.user);
+  const navigate =useNavigate();
+  const dispatch =useDispatch();
+  const {id} =useParams();
+  const handleDelete = () => {
+      axios
+      .delete(`http://localhost:3000/api/delete/${id}`)
+      .then (() => {
+        navigate('/Home');
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+
+  }
+  const handlesignOut = async () => {
+    try{
+      await fetch('/api/auth/signout');
+      dispatch(signOut());
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <div className="p-3 max-w-lg mx-auto">
       <h1 className="font-bold p-10 max-w-auto text-center text-4xl ">
@@ -50,8 +77,8 @@ service firebase.storage {
         
       </form>
       <div className="flex justify-between mt-3">
-        <span className="text-red-800">Delete Account</span>
-        <span className="text-red-800">Sign-out </span>
+        <span onClick={handleDelete} className="text-red-800 cursor-pointer">Delete Account</span>
+        <span onClick={handlesignOut} className="text-red-800 cursor-pointer">Sign-out </span>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import errorhandle from "../utils/error.js";
 import bcryptjs from 'bcryptjs';
 import User from "../models/userList.js";
+import express from "express";
 export const test = (req, res) => {
   res.json({
     message: "khgjhb",
@@ -36,3 +37,20 @@ export const updateUser = async (req, res, next) => {
     next(error);
   }
 };
+//delete user
+
+export const deleteUser = ('/:id' ,async (req,res) => {
+  try{
+    const{id} =req.params;
+    const data = await  User.findByIdAndDelete(id);
+    if(!data){
+      return res.status(404).send({message:"device not found"});
+    }
+    return res.status(200).send({message:"deleted success"});
+
+  }
+  catch (error) {
+    return res.status(500).send({message:error.message});
+  }
+});
+
